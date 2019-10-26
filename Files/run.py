@@ -169,8 +169,8 @@ def sms_ahoy_reply():
     return str(resp)
 
 def send_text(phone_number, text):
-    account_sid = ''
-    auth_token = '4dbe4cab0aae0d4c22cc2a7054b01a73'
+    account_sid = 'AC2b65ac20e63664cf0a6faafa1802061c'
+    auth_token = ''
     client = Client(account_sid, auth_token)
     
     message = client.messages \
