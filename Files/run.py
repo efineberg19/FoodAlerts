@@ -41,9 +41,9 @@ def get_favorite(hall, dateFrom, dateTo):
         for food_item in menus:
             if food_item["FormalName"] in favorite_foods:
                 if favoriteMessage == "":
-                    favoriteMessage = food_item["FormalName"] + " is being served in " + dining_halls[int(hall)] + " during " + food_item["Meal"]
+                    favoriteMessage = "- " + food_item["FormalName"] + " is being served in " + dining_halls[int(hall)] + " during " + food_item["Meal"]
                 else:
-                    favoriteMessage += "\n" + food_item["FormalName"] + " is being served in " + dining_halls[int(hall)] + " during " + food_item["Meal"]
+                    favoriteMessage += "\n" + "- " + food_item["FormalName"] + " is being served in " + dining_halls[int(hall)] + " during " + food_item["Meal"]
             
         if favoriteMessage == "":
             favoriteMessage = ""#"None of your favorite items will be served in " + dining_halls[int(hall)]
@@ -195,5 +195,6 @@ if __name__ == "__main__":
     for halls in dining_halls:
         if get_favorite(halls, "10-26-2019", "10-26-2019") != "":
             fav += get_favorite(halls, "10-26-2019", "10-26-2019") + "\n"
-    print(fav)
-    make_category_menu_file()
+    
+    string_to_text_user = "Hi! Here's Your Daily Meal Digest for 10/26/2019: \n" + fav
+    print(string_to_text_user)
