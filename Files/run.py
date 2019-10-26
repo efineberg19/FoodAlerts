@@ -96,7 +96,7 @@ def make_category_menu_file():
                 #meal_dictionary = json.loads(meal_dictionary)
             text_to_add = ""
             for food in menus:
-                text_to_add += food["Course"] + ": " + food["FormalName"] + ", "
+                text_to_add += food["FormalName"] + ": " + food["Course"] + ", "
             
             text_to_add = text_to_add[0:-1] + "}"
             f = open("category_menu_file.txt", "a")
@@ -188,20 +188,19 @@ def get_phone_number():
     
 
 if __name__ == "__main__":
-    #app.run(debug=True)
-    #send_text(9199860150)
-    #send_text(6508420875)
     #startTime = datetime.datetime(2019, 10, 26, 13, 32, 0)
     #print(datetime.datetime.now())
     #while datetime.datetime.now() < startTime:
         #time.sleep(1)
         
     #print("yay")
-    populate_favorites()
-    fav = ""
-    for halls in dining_halls:
-        if get_favorite(halls, "10-26-2019", "10-26-2019") != "":
-            fav += get_favorite(halls, "10-26-2019", "10-26-2019") + "\n"
     
-    string_to_text_user = "Hi! Here's Your Daily Meal Digest for 10/26/2019: \n" + fav
-    send_text(get_phone_number(), string_to_text_user)
+    #populate_favorites()
+    #fav = ""
+    #for halls in dining_halls:
+        #if get_favorite(halls, "10-26-2019", "10-26-2019") != "":
+            #fav += get_favorite(halls, "10-26-2019", "10-26-2019") + "\n"
+    
+    #string_to_text_user = "Hi! Here's Your Daily Meal Digest for 10/26/2019: \n" + fav
+    #send_text(get_phone_number(), string_to_text_user)
+    make_category_menu_file()
