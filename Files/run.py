@@ -158,11 +158,6 @@ def sms_ahoy_reply():
     # Start our response
     resp = MessagingResponse()
 
-    # Add a message
-    #r = DiningHall.Dining()
-    #response = str(DiningHall.get("1", "10-26-2019", "10-27-2019"))
-    #print(response)
-    #response = "Hi"
     response = "" + get("1", "10-26-2019", "10-27-2019")
     resp.message(response)
 
@@ -184,7 +179,9 @@ def get_phone_number():
     f = open("phone.txt", "r")
     num = f.read()  
     f.close()
-    return 6508420875
+    return num
+
+
     
 
 if __name__ == "__main__":
@@ -195,12 +192,11 @@ if __name__ == "__main__":
         
     #print("yay")
     
-    #populate_favorites()
-    #fav = ""
-    #for halls in dining_halls:
-        #if get_favorite(halls, "10-26-2019", "10-26-2019") != "":
-            #fav += get_favorite(halls, "10-26-2019", "10-26-2019") + "\n"
+    populate_favorites()
+    fav = ""
+    for halls in dining_halls:
+        if get_favorite(halls, "10-26-2019", "10-26-2019") != "":
+            fav += get_favorite(halls, "10-26-2019", "10-26-2019") + "\n"
     
-    #string_to_text_user = "Hi! Here's Your Daily Meal Digest for 10/26/2019: \n" + fav
-    #send_text(get_phone_number(), string_to_text_user)
-    make_category_menu_file()
+    string_to_text_user = "Hi! Here's Your Daily Meal Digest for 10/26/2019: \n" + fav
+    send_text(get_phone_number(), string_to_text_user)
