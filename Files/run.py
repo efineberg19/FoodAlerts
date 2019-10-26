@@ -168,17 +168,24 @@ def sms_ahoy_reply():
 
     return str(resp)
 
-def send_text(phone_number):
-    account_sid = 'AC2b65ac20e63664cf0a6faafa1802061c'
+def send_text(phone_number, text):
+    account_sid = ''
     auth_token = '4dbe4cab0aae0d4c22cc2a7054b01a73'
     client = Client(account_sid, auth_token)
     
     message = client.messages \
                     .create(
-                         body=get_favorite("2", "10-26-2019", "10-26-2019"),
+                         body=text,
                          from_='+12172902221',
                          to='+1' + str(phone_number)
                      )    
+
+def get_phone_number():
+    f = open("phone.txt", "r")
+    num = f.read()  
+    f.close()
+    return 6508420875
+    
 
 if __name__ == "__main__":
     #app.run(debug=True)
@@ -197,4 +204,4 @@ if __name__ == "__main__":
             fav += get_favorite(halls, "10-26-2019", "10-26-2019") + "\n"
     
     string_to_text_user = "Hi! Here's Your Daily Meal Digest for 10/26/2019: \n" + fav
-    print(string_to_text_user)
+    send_text(get_phone_number(), string_to_text_user)
