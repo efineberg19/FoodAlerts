@@ -14,10 +14,17 @@ import time
 
 app = Flask(__name__)
 
-favorite_foods = ["Macaroni & Cheese", "Fried Butterfly Shrimp", "S'mores Bars", "French Fries", "Chocolate Chunk Cookie"]
+favorite_foods = ""#["Macaroni & Cheese", "Fried Butterfly Shrimp", "S'mores Bars", "French Fries", "Chocolate Chunk Cookie"]
 
 dining_halls = {1: "Ikenberry Dining Hall", 2: "PAR Dining Hall", 5: "Lincoln/Allen Dining Hall", 27: "Blue 41"}  
 
+
+def populate_favorites():
+    global favorite_foods
+    f = open("favorites.txt", "r")
+    favorites_list = f.read()
+    f.close()
+    favorite_foods = favorites_list.split(",")
 
 def get_favorite(hall, dateFrom, dateTo): 
     global dining_halls
@@ -65,6 +72,38 @@ def make_menu_file_test():
         f.write(text_to_add)
         f.close()
         
+def make_category_menu_file():
+    global dining_halls
+    text_to_add = ""
+    
+    
+    for hall in dining_halls:
+        request_url = "https://web.housing.illinois.edu/MobileDining2/WebService/Search.aspx?k=7A828F94-620B-4EE3-A56F-328036CC3C04"
+        request_url += "&id=" + str(hall) + "&t=json"
+        try:
+            request_data = requests.get(request_url)
+            request_file = json.loads(request_data.text)
+            menus = request_file["Menus"]["Item"]    
+                    
+            
+            meal_dictionary = ""
+            
+            with open("category_menu_file.txt") as file:
+                meal_dictionary = file.read()
+                file.close()
+            f = open("category_menu_file.txt", "w")
+            f.write("")
+                #meal_dictionary = json.loads(meal_dictionary)
+            text_to_add = ""
+            for food in menus:
+                text_to_add += food["Course"] + ": " + food["FormalName"] + ", "
+            
+            text_to_add = text_to_add[0:-1] + "}"
+            f = open("category_menu_file.txt", "a")
+            f.write(meal_dictionary[0:-1] + text_to_add)
+            f.close()
+        except:
+            pass    
 
 def make_menu_file():
     global dining_halls
@@ -151,9 +190,10 @@ if __name__ == "__main__":
         #time.sleep(1)
         
     #print("yay")
+    populate_favorites()
     fav = ""
     for halls in dining_halls:
         if get_favorite(halls, "10-26-2019", "10-26-2019") != "":
             fav += get_favorite(halls, "10-26-2019", "10-26-2019") + "\n"
     print(fav)
-    make_menu_file()
+    make_category_menu_file()
