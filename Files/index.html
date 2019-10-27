@@ -1,7 +1,37 @@
 <!DOCTYPE html>
+
 <html>
 <head>
+    <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light|Yesteryear&display=swap" rel="stylesheet">
 <style>
+body {
+  /* display: flex; */
+  font-size: 25px;
+  /* justify-content: center;
+  text-align: center;
+  flex-wrap: wrap; */
+  font-family: 'Shadows Into Light', cursive;
+  background-color: #ffdae0;
+  padding: 10px;
+}
+h1 {
+  text-align: center;
+  font-size: 90px;
+  color:black;
+  font-family: 'Yesteryear', cursive;
+  margin-bottom: 50px;
+}
+.custom-select {
+  margin-top: 25px;
+  margin-bottom: 30px;
+}
+.image {
+  top: 80px; 
+  float: right;
+}
+.textarea {
+  width: 40px;
+}
 
 </style>
 <title>Illini Food Alerts</title>
@@ -9,10 +39,12 @@
 
 <body>
 <h1>Illini Food Alerts</h1>
-<h2>Enter your number:</h2>
+<img class="image" src="https://thumbs.gfycat.com/EthicalMadDove-size_restricted.gif">
+<h2>Enter your phone number:</h2>
+<h3>Enter area code & seven-digit phone number</h3>
+<textarea></textarea>
 
-
-<!-- <h2>Select a dining hall:</h2>
+<h2>Select a dining hall:</h2>
 
 <div class="custom-select" style="width:200px;">
         <select id="diningHalls" onchange="addDiningHall(this.value)">
@@ -30,11 +62,10 @@
                 console.log(diningHall);
             }
         </script>
-        <script>addDiningHall()</script> -->
-
+        <script>addDiningHall()</script>
 
 <h2>Select a Meal:</h2>
-<div class="custom-select" style="width:200px;">
+  <div class="custom-select">
         <select id="mealTime" onchange="addMealTime(this.value)">
           <option value="0"></option>
           <option value="Breakfast">Breakfast</option>
@@ -53,7 +84,7 @@
         <script>addMealTime()</script>
 
 <h2>Select a category:</h2>
-<div class="custom-select" style="width:200px;">
+<div class="custom-select">
         <select>
           <option value="0"></option>
           <option value="1">Entrees</option>
@@ -67,9 +98,13 @@
           <option value="9">Cereals</option>
         </select>
       </div>
+    </div>
 
 <h2>Select an Option:</h2>
 
+<div class="m-select" style="width:200px;">
+  <select id="category"></select>
+</div>
 
 
 
